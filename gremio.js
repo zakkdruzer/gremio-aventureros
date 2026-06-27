@@ -33,6 +33,37 @@ const gremio = {
     this.heroes.push(nuevoHeroe);
     console.log(`🛡️ ${nombre} el ${clase} se unió al gremio`);
   },
+
+  enviarMision: function (nombreHeroe) {
+    const heroe = buscarHeroe(nombreHeroe);
+
+    if (!heroe) {
+      console.log(`No existe un héroe llamado ${nombreHeroe}`);
+      return;
+    }
+
+    if (heroe.vida === 0) {
+      console.log(`☠️ ${heroe.nombre} está caído y no puede ir a la misión`);
+      return;
+    }
+
+    const exito = Math.random() < 0.6;
+
+    if (exito) {
+      const oroGanado = tirarDado(50);
+      heroe.oro += oroGanado;
+      heroe.nivel += 1;
+
+      console.log(
+        `⚔️ ${heroe.nombre} triunfó! +${oroGanado} oro, ahora nivel ${heroe.nivel}`
+      );
+    } else {
+      const dano = tirarDado(30);
+      heroe.vida = Math.max(0, heroe.vida - dano);
+
+      console.log(`🩸 ${heroe.nombre} fue herido (queda ${estadoVida(heroe.vida)})`);
+    }
+  },
 };
 
 // Muestra el nombre del gremio y el del primer héroe
@@ -95,5 +126,34 @@ console.log("")
 // Prueba: gremio.reclutar("Gimli", "Guerrero");  y  gremio.reclutar("Sam");
 gremio.reclutar("Gimli", "Guerrero");
 gremio.reclutar("Sam");
+
+console.log("")
+
+console.log("%cEtapa 5 · Enviar a una misión (Math)", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Agrega el método enviarMision(nombreHeroe). Debe:
+//   1) buscar el héroe (reutiliza buscarHeroe). Si no existe o está caído, avisar y terminar
+//   2) decidir con la suerte si hay éxito (60% de probabilidad)
+//   3) si gana: sumar oro (tirarDado) y subir un nivel
+//      si pierde: restarle vida (tirarDado), evitando que quede negativa
+
+// Prueba: gremio.enviarMision("Aragorn");  (varias veces, el azar cambia)
+gremio.enviarMision("Aragorn");
+gremio.enviarMision("Aragorn");
+gremio.enviarMision("Legolas");
+
+console.log("")
+
+console.log("%cEtapa 6 · El ranking (sort)", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Agrega el método ranking(). Debe:
+//   - mostrar los héroes ordenados por nivel, de MAYOR a menor
+//   - ordenar sobre una COPIA del arreglo (no sobre el roster real)
+
+
+// Fuera: gremio.ranking();
+
 
 console.log("")
