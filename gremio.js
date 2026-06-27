@@ -254,8 +254,18 @@ do {
   } else if (opcion === "5") {
     console.log(`Tesoro del gremio: ${gremio.tesoro()} oro`);
   } else if (opcion === "6") {
-    const nombre = prompt("Nombre del héroe:");
+  const nombre = prompt(
+    `Héroes disponibles:
+${gremio.heroes.map((heroe) => heroe.nombre).join("\n")}
+
+Nombre del héroe:`
+  );
+
+  if (nombre === null) {
+    console.log("Operación cancelada");
+  } else {
     gremio.fichaHeroe(nombre);
+  }
   } else if (opcion === "7") {
     console.log("¡El gremio cierra sus puertas! 🏰");
   } else {
