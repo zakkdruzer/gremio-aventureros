@@ -83,6 +83,23 @@ const gremio = {
   vivos: function () {
     return this.heroes.filter((heroe) => heroe.vida > 0);
   },
+
+  fichaHeroe: function (nombre) {
+  const heroe = buscarHeroe(nombre);
+
+  if (!heroe) {
+    console.log(`No existe un héroe llamado ${nombre}`);
+    return;
+  }
+
+  console.log(`== Ficha de ${heroe.nombre} ==`);
+
+  Object.entries(heroe).forEach(([clave, valor]) => {
+    console.log(`  ${clave}: ${valor}`);
+    });
+  },
+
+
 };
 
 // Muestra el nombre del gremio y el del primer héroe
@@ -186,5 +203,17 @@ console.log("")
 // Luego muestra el tesoro y los NOMBRES de los héroes vivos.
 console.log(`Tesoro del gremio: ${gremio.tesoro()} oro`);
 console.log(`Héroes en pie:`, gremio.vivos().map((heroe) => heroe.nombre));
+
+console.log("")
+
+console.log("%cEtapa 8 · Ficha del héroe (Object.entries)", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Agrega el método fichaHeroe(nombre). Debe:
+//   - buscar el héroe (reutiliza buscarHeroe) y validar que exista
+//   - mostrar TODAS sus propiedades recorriéndolo (sin escribirlas a mano)
+
+// Prueba: gremio.fichaHeroe("Gandalf");
+gremio.fichaHeroe("Gandalf");
 
 console.log("")
