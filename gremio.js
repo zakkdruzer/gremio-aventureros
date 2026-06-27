@@ -20,6 +20,19 @@ const gremio = {
       );
     }
   },
+
+  reclutar: function (nombre, clase = "Aventurero") {
+    const nuevoHeroe = {
+      nombre: nombre,
+      clase: clase,
+      nivel: 1,
+      oro: 0,
+      vida: 100,
+    };
+
+    this.heroes.push(nuevoHeroe);
+    console.log(`🛡️ ${nombre} el ${clase} se unió al gremio`);
+  },
 };
 
 // Muestra el nombre del gremio y el del primer héroe
@@ -67,5 +80,20 @@ console.log("")
 
 // Luego, fuera del objeto: gremio.verRoster();
 gremio.verRoster();
+
+console.log("")
+
+console.log("%cEtapa 4 · Reclutar (valor por defecto)", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Agrega el método reclutar(nombre, clase). Debe:
+//   - crear un héroe nuevo (nivel 1, 0 oro, 100 vida)
+//   - agregarlo al roster
+//   - la clase debe tener valor por defecto "Aventurero"
+
+
+// Prueba: gremio.reclutar("Gimli", "Guerrero");  y  gremio.reclutar("Sam");
+gremio.reclutar("Gimli", "Guerrero");
+gremio.reclutar("Sam");
 
 console.log("")
