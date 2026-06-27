@@ -217,3 +217,54 @@ console.log("")
 gremio.fichaHeroe("Gandalf");
 
 console.log("")
+
+console.log("%c🏆 Jefe Final · El menú do/while", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Construye al final del archivo un menú con do/while. Debe:
+//   - mostrar las opciones (Roster, Reclutar, Misión, Ranking, Tesoro, Ficha, Salir)
+//   - leer la elección con prompt
+//   - según la opción, llamar al método correspondiente del gremio
+//   - repetirse hasta que elijan Salir
+let opcion;
+
+do {
+  opcion = prompt(
+    `=== GREMIO ${gremio.nombre} ===
+1) Roster
+2) Reclutar
+3) Misión
+4) Ranking
+5) Tesoro
+6) Ficha
+7) Salir`
+  );
+
+  if (opcion === "1") {
+    gremio.verRoster();
+  } else if (opcion === "2") {
+    const nombre = prompt("Nombre del héroe:");
+    const clase = prompt("Clase del héroe:");
+    gremio.reclutar(nombre, clase || undefined);
+  } else if (opcion === "3") {
+    const nombreHeroe = prompt("Héroe para la misión:");
+    gremio.enviarMision(nombreHeroe);
+  } else if (opcion === "4") {
+    gremio.ranking();
+  } else if (opcion === "5") {
+    console.log(`Tesoro del gremio: ${gremio.tesoro()} oro`);
+  } else if (opcion === "6") {
+    const nombre = prompt("Nombre del héroe:");
+    gremio.fichaHeroe(nombre);
+  } else if (opcion === "7") {
+    console.log("¡El gremio cierra sus puertas! 🏰");
+  } else {
+    console.log("Opción inválida");
+  }
+
+  console.log("");
+} while (opcion !== "7");
+
+// Importante: el menú solo INVOCA tus métodos, no repite su lógica.
+
+console.log("")
