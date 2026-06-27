@@ -75,6 +75,14 @@ const gremio = {
       console.log(`  ${i + 1}. ${nombre} - Nivel ${nivel}`);
     }
   },
+
+  tesoro: function () {
+    return this.heroes.reduce((acumulador, heroe) => acumulador + heroe.oro, 0);
+  },
+
+  vivos: function () {
+    return this.heroes.filter((heroe) => heroe.vida > 0);
+  },
 };
 
 // Muestra el nombre del gremio y el del primer héroe
@@ -165,5 +173,18 @@ console.log("")
 
 // Fuera: gremio.ranking();
 gremio.ranking();
+
+console.log("")
+
+console.log("%cEtapa 7 · Tesoro y bajas (reduce + filter)", "font-weight: bold; color: green; font-size: 15px;");
+console.log("")
+
+// Agrega dos métodos:
+//   tesoro() -> devuelve la suma del oro de TODOS los héroes
+//   vivos()  -> devuelve los héroes con vida mayor a 0
+
+// Luego muestra el tesoro y los NOMBRES de los héroes vivos.
+console.log(`Tesoro del gremio: ${gremio.tesoro()} oro`);
+console.log(`Héroes en pie:`, gremio.vivos().map((heroe) => heroe.nombre));
 
 console.log("")
