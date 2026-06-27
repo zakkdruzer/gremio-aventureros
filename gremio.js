@@ -64,6 +64,17 @@ const gremio = {
       console.log(`🩸 ${heroe.nombre} fue herido (queda ${estadoVida(heroe.vida)})`);
     }
   },
+  
+  ranking: function () {
+    const heroesOrdenados = [...this.heroes].sort((a, b) => b.nivel - a.nivel);
+
+    console.log("== Ranking por nivel ==");
+
+    for (let i = 0; i < heroesOrdenados.length; i++) {
+      const { nombre, nivel } = heroesOrdenados[i];
+      console.log(`  ${i + 1}. ${nombre} - Nivel ${nivel}`);
+    }
+  },
 };
 
 // Muestra el nombre del gremio y el del primer héroe
@@ -152,8 +163,7 @@ console.log("")
 //   - mostrar los héroes ordenados por nivel, de MAYOR a menor
 //   - ordenar sobre una COPIA del arreglo (no sobre el roster real)
 
-
 // Fuera: gremio.ranking();
-
+gremio.ranking();
 
 console.log("")
